@@ -334,6 +334,8 @@ namespace OpenHardwareMonitor.Utilities {
           return "bigng.png";
         case HardwareType.RAM:
           return "ram.png";
+        case HardwareType.Network:
+          return "network.png";
         default:
           return "cpu.png";
       }
