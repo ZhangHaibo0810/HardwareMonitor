@@ -31,7 +31,8 @@ namespace OpenHardwareMonitor.Hardware {
     private bool ramEnabled;
     private bool gpuEnabled;
     private bool fanControllerEnabled;
-    private bool hddEnabled;    
+    private bool hddEnabled;
+    private bool networkEnabled;
 
     public Computer() {
       this.settings = new Settings();
@@ -214,6 +215,20 @@ namespace OpenHardwareMonitor.Hardware {
             RemoveType<HDD.HarddriveGroup>();
         }
         hddEnabled = value;
+      }
+    }
+
+    public bool NetworkEnabled {
+      get { return networkEnabled; }
+      set {
+        if (open && value != networkEnabled) {
+          if (value)
+            Add(new Network.NetworkGroup(settings));
+          else
+            RemoveType<Network.NetworkGroup>();
+        }
+
+        networkEnabled = value;
       }
     }
 
